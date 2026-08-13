@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@300;400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+            overflow: hidden; 
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: pan-y;
+        }
+        .font-mono { font-family: 'Roboto Mono', monospace; }
+
+        .smooth-scroll {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        .smooth-scroll::-webkit-scrollbar { width: 3px; height: 3px; }
+        .smooth-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.3); border-radius: 4px; }
+        .smooth-scroll::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
+        .smooth-scroll::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes floatMeditate { 
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 15px rgba(6,182,212,0.5)); } 
+            50% { transform: translateY(-10px) scale(1.02); filter: drop-shadow(0 0 25px rgba(6,182,212,0.8)); } 
+        }
+        .anim-meditate { animation: floatMeditate 4s ease-in-out infinite; }
+        
+        @keyframes auraPulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .anim-aura { animation: auraPulse 3s ease-in-out infinite; }
+
+        @keyframes popDmg {
+            0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -20px) scale(1.5); }
+            100% { opacity: 0; transform: translate(-50%, -40px) scale(1); }
+        }
+        @keyframes battleSlide {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(8px) scale(1.08); }
+        }
+        @keyframes companionFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.03); }
+        }
+        .dmg-text {
+            position: absolute; left: 50%; top: -20px;
+            transform: translateX(-50%);
+            opacity: 0; pointer-events: none;
+            text-shadow: 0 0 5px #000, 0 0 10px #000;
+            font-weight: 900; z-index: 50; white-space: nowrap;
+        }
+        .anim-dmg { animation: popDmg 0.8s ease-out forwards; }
+        .battle-attack { animation: battleSlide 0.35s ease-in-out; }
+        .battle-companion { animation: companionFloat 2.2s ease-in-out infinite; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .nav-btn { transition: all 0.2s; position: relative; overflow: hidden; flex-shrink: 0; }
+        .nav-btn::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: #38bdf8; transition: 0.3s; border-radius: 3px 3px 0 0; }
+        .nav-btn.active::after { width: 60%; }
+        .nav-btn.active { 
+            background: linear-gradient(180deg, rgba(30,58,138,0) 0%, rgba(30,58,138,0.5) 100%); 
+            color: #38bdf8; text-shadow: 0 0 10px rgba(56,189,248,0.5);
+        }
+        
+        .item-card { 
+            background: rgba(15, 23, 42, 0.7); 
+            backdrop-filter: blur(8px);
+            border: 1px solid #334155; 
+            border-radius: 0.75rem; 
+            padding: 0.75rem; 
+            transition: all 0.2s; cursor: pointer; 
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .item-card:active { transform: scale(0.95); }
+        .item-card.equipped { border-color: #eab308; box-shadow: inset 0 0 15px rgba(234,179,8,0.1), 0 0 10px rgba(234, 179, 8, 0.3); }
+        .item-card.equipped::before { content: 'ĐANG MẶC'; position: absolute; top: 0; right: 0; background: #eab308; color: #000; font-size: 0.5rem; font-weight: bold; padding: 2px 6px; border-bottom-left-radius: 8px; z-index: 10; }
+        .item-card.locked { opacity: 0.6; cursor: not-allowed; filter: grayscale(100%); pointer-events: none; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-action { transition: transform 0.1s, filter 0.2s; }
+        .btn-action:active { transform: scale(0.92); }
+        .btn-action:disabled { filter: grayscale(100%) opacity(0.5); pointer-events: none; }
+
+        .mobile-container {
+            width: 100%; max-width: 480px; margin: 0 auto;
+            height: 100dvh; display: flex; flex-direction: column;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .anim-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+        .anim-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.02); filter: brightness(1.2); }
+        }
+        .anim-breathe {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        /* --- VFX Animations --- */
+        @keyframes animVfxSlash {
+            0% { transform: translate(-50%, -50%) scale(0.5) rotate(-30deg); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2) rotate(30deg); opacity: 0; }
+        }
+        .vfx-slash {
+            position: absolute; left: 50%; top: 50%;
+            width: 150px; height: 150px;
+            mix-blend-mode: screen; pointer-events: none; z-index: 100;
+            animation: animVfxSlash 0.4s ease-out forwards;
+        }
+
+        @keyframes animVfxMagicCircle {
+            0% { transform: translate(-50%, -50%) scale(0.8) rotate(0deg); opacity: 0; }
+            30% { transform: translate(-50%, -50%) scale(1.1) rotate(60deg); opacity: 1; }
+            70% { transform: translate(-50%, -50%) scale(1.1) rotate(120deg); opacity: 1; filter: brightness(1.5); }
+            100% { transform: translate(-50%, -50%) scale(1.5) rotate(180deg); opacity: 0; filter: brightness(0); }
+        }
+        .vfx-magic-circle {
+            position: absolute; left: 50%; top: 50%;
+            width: 180px; height: 180px;
+            mix-blend-mode: screen; pointer-events: none; z-index: 40;
+            animation: animVfxMagicCircle 1.2s ease-in-out forwards;
+        }
+        .nav-btn.active { color: #22d3ee; }
+        .nav-btn.active img { border-color: #22d3ee; box-shadow: 0 0 15px rgba(34, 211, 238, 0.6); transform: scale(1.1); }
+        .nav-btn:not(.active):hover img { border-color: #94a3b8; transform: scale(1.05); }
