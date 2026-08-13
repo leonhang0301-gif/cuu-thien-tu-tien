@@ -30,7 +30,7 @@ jobs:
       - name: Build iOS App (Unsigned)
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Release -sdk iphoneos SYMROOT=$(PWD)/build build CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project App.xcodeproj -scheme App -configuration Release -sdk iphoneos SYMROOT=$(PWD)/build build CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - name: Package to .ipa
         run: |
