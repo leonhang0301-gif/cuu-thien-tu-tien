@@ -16,10 +16,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
 
       - name: Install dependencies
         run: npm install
+
+      - name: Grant execute permissions (Fix Windows commit issues)
+        run: chmod -R +x ios || true
 
       - name: Sync Capacitor iOS
         run: npx cap sync ios
